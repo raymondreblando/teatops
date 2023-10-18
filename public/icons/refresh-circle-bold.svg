@@ -1,0 +1,8 @@
+<svg id="refresh-circle_bold" data-name="refresh-circle/bold" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="vuesax_bold_refresh-circle" data-name="vuesax/bold/refresh-circle">
+    <g id="refresh-circle">
+      <path id="Vector" d="M0,0H24V24H0Z" transform="translate(24 24) rotate(180)" fill="none" opacity="0"/>
+      <path id="Vector-2" data-name="Vector" d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0ZM4.6,9.23a5.421,5.421,0,0,1,8.82-3.46V4.82a.75.75,0,0,1,1.5,0V7.49a.755.755,0,0,1-.75.75H11.5a.75.75,0,0,1,0-1.5h.75a3.948,3.948,0,0,0-6.18,2.7.744.744,0,0,1-.74.64.41.41,0,0,1-.11-.01A.739.739,0,0,1,4.6,9.23Zm9.27,4.64a5.426,5.426,0,0,1-7.3.36v.94a.75.75,0,1,1-1.5,0V12.5a.755.755,0,0,1,.75-.75H8.49a.75.75,0,0,1,0,1.5H7.74a3.948,3.948,0,0,0,6.18-2.7.748.748,0,0,1,.85-.64.761.761,0,0,1,.64.85A5.485,5.485,0,0,1,13.87,13.87Z" transform="translate(2 2)" fill="#f1437a"/>
+    </g>
+  </g>
+</svg>

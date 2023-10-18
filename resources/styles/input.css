@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Kreon:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, 
+*::before, 
+*::after{
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Kreon', sans-serif;
+}
+
+a{
+  text-decoration: none;
+}
+
+input, 
+select,
+textarea{
+  font-family: 'Kreon', sans-serif;
+}
+
+.loader{
+  @apply fixed inset-0 z-[100] bg-light-pink flex flex-col items-center justify-center gap-8 invisible opacity-0;
+}
+
+.loader.show{
+  @apply visible opacity-100 transition-all;
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border: 11.2px #f1437a double;
+  border-left-style: solid;
+  border-radius: 50%;
+  animation: spinner-aib1d7 0.75s infinite linear;
+}
+
+@keyframes spinner-aib1d7 {
+  to {
+     transform: rotate(360deg);
+  }
+}
+
+.header__nav{
+  @apply w-[min(1200px,80%)] h-20 flex items-center justify-between mx-auto;
+}
+
+.header__menu{
+  @apply fixed md:static top-0 inset-x-0 bg-light-pink md:bg-transparent flex flex-col md:flex-row py-12 md:py-0 px-10 md:px-0 gap-8 opacity-0 md:opacity-100 invisible md:visible;
+}
+
+.header__menu.show{
+  @apply opacity-100 visible transition-all;
+}
+
+.header__link{
+  @apply relative text-sm uppercase font-medium;
+}
+
+.header__link.active{
+  @apply text-primary before:absolute before:top-[260%] before:w-full before:h-1 before:bg-primary;
+}
+
+/* .menu-card{
+  background: linear-gradient(to bottom, transparent 20%,  #feeff1 80%);
+  background-color: transparent;
+} */
+
+.modal{
+  @apply fixed inset-0 flex bg-black/60 z-20 opacity-0 invisible pointer-events-none;
+}
+
+.modal.show{
+  @apply opacity-100 visible transition-all pointer-events-auto;
+}
+
+.login-container{
+  @apply absolute top-1/2 -translate-y-1/3 left-1/2 -translate-x-1/2 w-[min(25rem,90%)] h-max bg-white m-auto rounded-md py-6 px-10 opacity-0 invisible;
+}
+
+.signup-container{
+  @apply absolute top-1/2 -translate-y-1/3 left-1/2 -translate-x-1/2 w-[min(30rem,90%)] h-max bg-white m-auto rounded-md py-6 px-10 opacity-0 invisible;
+}
+
+.login-container.show,
+.signup-container.show{
+  @apply opacity-100 visible -translate-y-1/2 transition-all delay-150 duration-300;
+}
+
+.category-wrapper::-webkit-scrollbar{
+  display: none;
+}
+
+.category{
+  @apply flex flex-col gap-1 py-5 px-2 rounded-full;
+}
+
+.category.active{
+  @apply bg-white;
+}
+
+.order-status{
+  @apply w-fit px-5 py-2 flex items-center justify-center text-[10px] font-semibold rounded-full;
+}
+
+.order-pending{
+  @apply bg-orange-100 text-orange-600;
+}
+
+.order-confirmed{
+  @apply bg-indigo-100 text-indigo-600;
+}
+
+.order-delivering{
+  @apply bg-sky-100 text-sky-600;
+}
+
+.order-completed{
+  @apply bg-emerald-100 text-emerald-600;
+}
+
+.order-cancelled{
+  @apply bg-rose-100 text-rose-600;
+}
+
+.cancel-order{
+  @apply absolute top-0 left-full w-full h-full bg-white flex flex-col justify-center items-center gap-2 px-6 opacity-0 invisible;
+}
+
+.cancel-order.show{
+  @apply left-0 opacity-100 visible transition-all;
+}
+
+.pagination a.active{
+  @apply bg-primary text-white;
+}
+
+.order-type,
+.pmethod{
+  @apply flex items-center gap-2 py-2 px-4 bg-gray-100 rounded-md;
+}
+
+.menu-size{
+  @apply text-xs font-bold text-black bg-white py-1 px-2 rounded-lg transition-all;
+}
+
+.menu-size.active{
+  @apply bg-light-pink text-primary;
+}
