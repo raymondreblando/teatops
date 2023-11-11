@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="39" height="44" viewBox="0 0 39 44">
+  <defs>
+    <clipPath id="clip-bell">
+      <rect width="39" height="44"/>
+    </clipPath>
+  </defs>
+  <g id="bell" clip-path="url(#clip-bell)">
+    <path id="icons8_doorbell" d="M38.46,9.54a15.5,15.5,0,0,0-21.92,0L12.3,13.778,6.693,15.72A3.976,3.976,0,0,0,4.1,18.6a4.006,4.006,0,0,0,1.071,3.725l20.5,20.5A4.022,4.022,0,0,0,28.5,44a4,4,0,0,0,3.779-2.693L34.221,35.7l4.238-4.238a15.5,15.5,0,0,0,0-21.92ZM9.371,29.355a6.613,6.613,0,0,0,9.274,9.274Z" transform="translate(-14.441 22.793) rotate(-45)" fill="#222"/>
+  </g>
+</svg>

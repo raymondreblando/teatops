@@ -33,7 +33,7 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
           
           <div class="bg-white rounded-md overflow-auto mb-4">
             <p class="text-center py-4">Category Size & Price</p>
-            <table id="my-table" class="w-full border-collapse border-spacing-4 text-left whitespace-nowrap table-auto">
+            <table id="my-table-1" class="w-full border-collapse border-spacing-4 text-left whitespace-nowrap table-auto">
               <thead>
                 <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Size</th>
                 <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Price</th>
@@ -42,8 +42,22 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
                 <tbody></tbody>
             </table>
           </div>
+          <div data-cell-count="2" data-table-name="my-table-1" class="add-row-button grid place-items-center mx-auto w-12 h-12 mb-3 rounded-full text-xl bg-primary cursor-pointer text-white group-[.active]:border-none">
+            <i class="ri-add-circle-line"></i>
+          </div>
 
-          <div data-cell-count="2" class="add-row-button grid place-items-center mx-auto w-12 h-12 mb-3 rounded-full text-xl bg-primary cursor-pointer text-white group-[.active]:border-none">
+          <div class="bg-white rounded-md overflow-auto mb-4">
+            <p class="text-center py-4">Addons & Price</p>
+            <table id="my-table-2" class="w-full border-collapse border-spacing-4 text-left whitespace-nowrap table-auto">
+              <thead>
+                <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Name</th>
+                <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Price</th>
+                <th width="18%" class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Action</th>
+              </thead>
+                <tbody></tbody>
+            </table>
+          </div>
+          <div data-cell-count="2" data-table-name="my-table-2" class="add-row-button grid place-items-center mx-auto w-12 h-12 mb-3 rounded-full text-xl bg-primary cursor-pointer text-white group-[.active]:border-none">
             <i class="ri-add-circle-line"></i>
           </div>
 

@@ -33,10 +33,10 @@ $order_summary = $database->fetch();
             </div>
           </div>
           <?php if($order_summary->order_status === "Pending"): ?>
-            <button type="button" id="confirmOrder" data-id="<?php echo $order_summary->order_id ?>" class="flex items-center text-xs text-white font-semibold bg-emerald-600 py-2 px-4 rounded-md gap-2">
+            <!-- <button type="button" id="confirmOrder" data-id="<?php echo $order_summary->order_id ?>" class="flex items-center text-xs text-white font-semibold bg-emerald-600 py-2 px-4 rounded-md gap-2">
               <img src="<?php echo SYSTEM_URL ?>/public/icons/tick-circle-bold.svg" alt="check" class="w-5 h-5">
               Confirm Order
-            </button>
+            </button> -->
           <?php endif ?>
         </div>
         <p class="text-sm text-black font-semibold mb-3" data-aos="fade-up">Order Details</p>
@@ -88,6 +88,7 @@ $order_summary = $database->fetch();
                   </div>
                   <div>
                     <p class="text-sm text-black font-semibold"><?= $item->menu_name ?></p>
+                    <p class="text-xs text-gray-400 font-semibold">With <?= $item->addons ?></p>
                     <div class="flex items-center gap-2">
                       <span class="bg-primary text-white text-[10px] uppercase px-[4px] leading-none"><?= $item->p_size ?></span>
                       <p class="text-xs text-slate-500">&#8369; <?= $item->p_price." x ".$item->quantity ?></p>

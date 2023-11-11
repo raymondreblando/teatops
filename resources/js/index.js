@@ -111,3 +111,12 @@ addEvent(".menu-size", "click", ({ target }) => {
   menuSizes.forEach(menuSize => menuSize.classList.remove("active"));
   target.classList.add("active");
 }, "all")
+
+addEvent(".notification", "click", ({ currentTarget }) => {
+  const notifDropdown = currentTarget.querySelector('.notification-dropdown');
+  notifDropdown.classList.toggle('hidden');
+}, "all")
+
+addEvent(".addons", "click", ({ target }) => {
+  target.classList.toggle("active");
+}, "all")

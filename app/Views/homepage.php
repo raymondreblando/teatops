@@ -70,31 +70,50 @@ include 'Partials/header.php';
             $menus = $database->fetchAll();
             foreach($menus as $menu):
         ?>
-          <div class="menu-card relative bg-white/50 py-8 px-10 rounded-2xl" data-aos="fade-up">
-          <span class="price-container-<?= $menu->menu_no ?> hidden absolute top-8 right-12 border-2 border-white bg-primary w-10 h-10 text-white text-[10px] font-medium rounded-full text-center leading-10 finder2">&#8369; <span class="size-price-<?= $menu->menu_no ?>"></span></span>
-            <img src="<?= SYSTEM_URL."/uploads/menu/".$menu->menu_photo ?>" alt="tea" class="h-[150px] mb-3 mx-auto">
-            <p class="text-[13px] text-black uppercase font-semibold text-center mt-2 mb-2 tracking-tighter finder1"><?= $menu->menu_name ?></p>
-            <input type="hidden" class="selected-size-<?= $menu->menu_no ?>" hidden>
-            <p class="text-[9px] uppercase font-bold mb-1 text-center tracking-tighter">Choose a size</p>
-            <div class="flex justify-center items-center gap-2 mb-4">
-                <?php
+            <div class="searchArea itemBox <?= $menu->category_id ?>">
+              <div class="menu-card relative bg-white/50 py-8 px-10 rounded-2xl">
+                <span class="price-container-<?= $menu->menu_no ?> hidden absolute top-8 right-12 border-2 border-white bg-primary w-10 h-10 text-white text-[10px] font-medium rounded-full text-center leading-10 finder2">&#8369; <span class="size-price-<?= $menu->menu_no ?>"></span></span>
+                <img src="<?= SYSTEM_URL."/uploads/menu/".$menu->menu_photo ?>" alt="tea" class="h-[150px] mb-3 mx-auto">
+                <p class="text-[13px] text-black uppercase font-semibold text-center mt-2 mb-2 tracking-tighter finder1"><?= $menu->menu_name ?></p>
+                
+                <p class="text-[9px] uppercase font-bold mb-1 text-center tracking-tighter">Addons</p>
+                <div class="flex flex-wrap justify-center items-center gap-2 mb-4">
+                  <?php
+                      $database->DBQuery("SELECT * FROM `addons` WHERE `category_id`=?", [$menu->category_id]);
+                      if($database->rowCount() > 0){
+                        foreach($database->fetchAll() as $addon){
+                            echo '<span role="button" class="addons menu-addons addons-price-'. $menu->menu_no .'" data-name="'. $addon->addons_name .'" data-no="'. $menu->menu_no .'" data-price="'. $addon->addons_price .'">'.$addon->addons_name.'</span>';
+                        }
+                      }else{
+                        echo '<p class="text-[10px] font-bold mb-1 text-center">No available addons</p>';
+                      }
+                  ?>
+                </div>
+
+                <p class="text-[9px] uppercase font-bold mb-1 text-center tracking-tighter">Choose a size</p>
+                <div class="flex justify-center items-center gap-2 mb-4">
+                  <?php
                       $database->DBQuery("SELECT * FROM `price` WHERE `category_id`=?", [$menu->category_id]);
-                      $sizes = $database->fetchAll();
-                      foreach($sizes as $size):
-                ?>
-                      <span role="button" data-id="<?= $size->p_id ?>" data-no="<?= $menu->menu_no ?>" data-price="<?= $size->p_price ?>" class="menu-size"><?= $size->p_size ?></span>
-                <?php endforeach ?>
-            </div>
-            <?php if(isset($_SESSION["uid"]) && isset($_SESSION["loggedin"])): ?>
-                <?php if($menu->menu_stock > 0): ?>
-                  <button data-id="<?= $menu->menu_id ?>" data-no="<?= $menu->menu_no ?>" class="saveOrder block bg-primary text-white text-xs py-2 px-4 rounded-md mx-auto">Order Now</button>
+                      foreach($database->fetchAll() as $size){
+                        echo '<span role="button" class="menu-size menu-price-'. $menu->menu_no .'" data-id="'. $size->p_id .'" data-no="'. $menu->menu_no .'" data-price="'. $size->p_price .'">'. $size->p_size .'</span>';
+                      }
+                  ?>
+                </div>
+                <?php if(isset($_SESSION["uid"]) && isset($_SESSION["loggedin"])): ?>
+                    <?php if($_SESSION["role"] === "968375857"): ?>
+                      <button onclick="window.location.href='<?= SYSTEM_URL.'/update-menu/'.$menu->menu_id ?>'" class="block bg-primary text-white text-xs py-2 px-4 rounded-md mx-auto">Update Item</button>
+                    <?php else: ?>
+                      <?php if($menu->menu_stock > 0): ?>
+                        <button data-id="<?= $menu->menu_id ?>" data-no="<?= $menu->menu_no ?>" class="saveOrder block bg-primary text-white text-xs py-2 px-4 rounded-md mx-auto">Order Now</button>
+                      <?php else: ?>
+                        <span class="block w-fit bg-gray-200 text-black text-xs py-2 px-4 rounded-md mx-auto">Sold Out</span>
+                      <?php endif ?>
+                    <?php endif ?>
                 <?php else: ?>
-                  <span class="block w-fit bg-gray-200 text-black text-xs py-2 px-4 rounded-md mx-auto">Sold Out</span>
+                    <button class="login-btn block bg-primary text-white text-xs py-2 px-4 rounded-md mx-auto">Order Now</button>
                 <?php endif ?>
-            <?php else: ?>
-                <button class="login-btn block bg-primary text-white text-xs py-2 px-4 rounded-md mx-auto">Order Now</button>
-            <?php endif ?>
-          </div>
+              </div>
+            </div>
         <?php endforeach ?>
       </div>
       <a href="<?php echo SYSTEM_URL ?>/menu" class="block w-fit text-xs font-semibold mt-16 bg-white py-3 px-6 rounded-full mx-auto uppercase" data-aos="fade-down">Browse All</a>

@@ -17,6 +17,7 @@ if(empty($username) OR empty($password)){
         if($user->active === "yes"){
             $_SESSION["loggedin"] = true;
             $_SESSION["uid"] = $user->user_id;
+            $_SESSION["fullname"] = $user->fullname;
             $_SESSION["role"] = $user->role_id;
             $functions->html_fetch('<script>window.location.href = "'.SYSTEM_URL.'/menu";</script>');
         }else{

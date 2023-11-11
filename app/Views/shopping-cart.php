@@ -38,8 +38,15 @@ $redirect->redirectNotCustomer(SYSTEM_URL);
                       </div>
                       <div>
                         <p class="text-sm text-black font-semibold leading-none"><?= $cart->menu_name ?></p>
+                        <?php if($cart->addonsPrice > 0): ?>
+                          <p class="text-xs text-gray-400 font-semibold leading-none">With <?= $cart->addons ?></p>
+                        <?php endif ?>
                         <span class="bg-primary text-white text-[10px] uppercase px-[4px] leading-none"><?= $cart->p_size ?></span>
-                        <p class="text-xs text-slate-500">&#8369; <span class="item-price"><?= $cart->p_price ?></span></p>
+                        <p class="text-xs text-slate-500">
+                          &#8369; <span class="item-price"><?= $cart->p_price ?></span>
+                          <?php if($cart->addonsPrice > 0): ?>
+                            + &#8369; <span class="addons-price"><?= $cart->addonsPrice ?></span> for addons</p>
+                          <?php endif ?>
                       </div>
                     </div>
                     <div class="text-center">

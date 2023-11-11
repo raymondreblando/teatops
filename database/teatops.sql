@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2023 at 02:43 PM
+-- Generation Time: Nov 11, 2023 at 12:13 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -24,6 +24,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `addons`
+--
+
+CREATE TABLE `addons` (
+  `addons_no` int(11) NOT NULL,
+  `addons_id` text NOT NULL,
+  `category_id` text NOT NULL,
+  `addons_name` varchar(100) NOT NULL,
+  `addons_price` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cart_items`
 --
 
@@ -33,7 +47,9 @@ CREATE TABLE `cart_items` (
   `user_id` text NOT NULL,
   `menu_id` text NOT NULL,
   `p_id` text NOT NULL,
-  `quantity` int(11) NOT NULL DEFAULT 1
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `addons` text NOT NULL,
+  `addonsPrice` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -77,7 +93,26 @@ CREATE TABLE `my_order` (
   `order_id` text NOT NULL,
   `menu_id` text NOT NULL,
   `p_id` text NOT NULL,
-  `quantity` int(11) NOT NULL DEFAULT 1
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `addons` text NOT NULL,
+  `addonsPrice` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification`
+--
+
+CREATE TABLE `notification` (
+  `n_no` int(11) NOT NULL,
+  `n_id` text NOT NULL,
+  `n_from` text NOT NULL,
+  `n_to` text NOT NULL,
+  `n_msg` varchar(75) NOT NULL,
+  `n_type` varchar(35) NOT NULL,
+  `n_date` datetime NOT NULL,
+  `n_seen` varchar(3) NOT NULL DEFAULT 'no'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -171,11 +206,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_no`, `user_id`, `role_id`, `username`, `password`, `fullname`, `gender`, `contact`, `address`, `active`, `built_in`, `date_created`) VALUES
-(1, '9d2744d8-90db-4736-a590-27de52a941ee', 968375857, 'Admin', '0192023a7bbd73250516f069df18b500', 'Default Admin', 'Male', '09999999999', 'Polangui Albay', 'yes', 'yes', '2023-08-19 20:43:12');
+(1, '9d2744d8-90db-4736-a590-27de52a941ee', 968375857, 'Admin', '0192023a7bbd73250516f069df18b500', 'Default Admin', 'Male', '09999999999', 'Polangui Albay', 'yes', 'yes', '2023-08-19 20:43:12'),
+(83, '6f905805-f3c0-4e45-8e1f-a23901764d8c', 564570857, 'Spiderman', '992e63080ee1e47b99f42b8d64ede953', 'Tom Holland', 'Male', '09322550100', 'Balogo, Oas, Albay', 'yes', 'no', '2023-09-22 21:00:44');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `addons`
+--
+ALTER TABLE `addons`
+  ADD PRIMARY KEY (`addons_no`);
 
 --
 -- Indexes for table `cart_items`
@@ -200,6 +242,12 @@ ALTER TABLE `menu`
 --
 ALTER TABLE `my_order`
   ADD PRIMARY KEY (`my_order_no`);
+
+--
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`n_no`);
 
 --
 -- Indexes for table `orders`
@@ -236,10 +284,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `addons`
+--
+ALTER TABLE `addons`
+  MODIFY `addons_no` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `cart_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `cart_no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -258,6 +312,12 @@ ALTER TABLE `menu`
 --
 ALTER TABLE `my_order`
   MODIFY `my_order_no` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `n_no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -287,7 +347,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `user_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

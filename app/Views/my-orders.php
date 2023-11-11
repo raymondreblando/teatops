@@ -72,10 +72,15 @@ $redirect->redirectNotCustomer(SYSTEM_URL);
                           </div>
                           <div>
                             <p class="text-sm text-black font-semibold finder5"><?= $myItem->menu_name ?></p>
-                            <div class="flex items-center gap-2">
+                            <?php if($myItem->addonsPrice > 0): ?>
+                              <p class="text-xs text-gray-400 font-semibold leading-none">With <?= $myItem->addons ?></p>
+                            <?php endif ?>
                               <span class="bg-primary text-white text-[9px] uppercase px-[4px]"><?= $myItem->p_size ?></span>
-                              <p class="text-xs text-slate-500">&#8369; <?= $myItem->p_price ?></p>
-                            </div>
+                              <p class="text-xs text-slate-500">
+                                &#8369; <span class="item-price"><?= $myItem->p_price ?></span>
+                                <?php if($myItem->addonsPrice > 0): ?>
+                                  + &#8369; <span class="addons-price"><?= $myItem->addonsPrice ?></span> for addons</p>
+                                <?php endif ?>
                           </div>
                         </div>
                         <div class="text-center">

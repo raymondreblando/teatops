@@ -36,6 +36,18 @@ textarea{
   @apply visible opacity-100 transition-all;
 }
 
+.custom-scroll::-webkit-scrollbar{
+  @apply w-[5px];
+}
+
+.custom-scroll::-webkit-scrollbar-thumb{
+  @apply w-[5px] rounded-lg bg-transparent;
+}
+
+.custom-scroll:hover::-webkit-scrollbar-thumb{
+  @apply bg-gray-300;
+}
+
 .spinner {
   width: 56px;
   height: 56px;
@@ -150,10 +162,16 @@ textarea{
   @apply flex items-center gap-2 py-2 px-4 bg-gray-100 rounded-md;
 }
 
-.menu-size{
+.menu-size,
+.addons{
   @apply text-xs font-bold text-black bg-white py-1 px-2 rounded-lg transition-all;
 }
 
-.menu-size.active{
+.addons{
+  @apply text-[10px]
+}
+
+.menu-size.active,
+.addons.active{
   @apply bg-light-pink text-primary;
 }
