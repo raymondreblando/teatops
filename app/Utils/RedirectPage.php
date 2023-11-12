@@ -18,14 +18,14 @@ class RedirectPage
     }
     // Method to redirect the user to specific page if not admin
     public function redirectNotAdmin($location){
-        if($_SESSION["role"] !== "968375857"){
+        if($_SESSION["role"] != "968375857"){
             header("Location: $location");
             exit;
         }
     }
      // Method to redirect the user to specific page if not customer
      public function redirectNotCustomer($location){
-        if($_SESSION["role"] !== "564570857"){
+        if($_SESSION["role"] != "564570857"){
             header("Location: $location");
             exit;
         }

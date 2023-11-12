@@ -27,7 +27,7 @@ if(isset($_SESSION["uid"]) AND isset($_SESSION["loggedin"])){
                             <li><a href="<?php echo SYSTEM_URL ?>/menu" class="header__link <?php echo $tab_active == 'Menu' ? 'active' : '' ?>">Menu</a></li>
                             
                             <?php if(isset($_SESSION["uid"]) AND isset($_SESSION["loggedin"])): ?>
-                                   <?php if($_SESSION["role"] !== "968375857"): ?>
+                                   <?php if($_SESSION["role"] != "968375857"): ?>
                                           <li><a href="<?php echo SYSTEM_URL ?>/my_orders" class="header__link <?php echo $tab_active == 'My Orders' ? 'active' : '' ?>">My Orders</a></li>
                                           <li><a href="<?php echo SYSTEM_URL ?>/profile" class="header__link <?php echo $tab_active == 'Profile' ? 'active' : '' ?>">Profile</a></li>
                                           <div class="notification relative grid place-items-center w-9 h-9 bg-secondary/20 rounded-full cursor-pointer">

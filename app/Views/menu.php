@@ -20,7 +20,7 @@ include 'Partials/header.php';
           <img src="<?php echo SYSTEM_URL ?>/public/icons/search-normal-linear.svg" alt="search" class="w-5 h-5">
         </div>
         <?php if(isset($_SESSION["uid"]) AND isset($_SESSION["loggedin"])): ?>
-          <?php if($_SESSION["role"] === "968375857" AND $_SESSION["uid"] === "9d2744d8-90db-4736-a590-27de52a941ee"): ?>
+          <?php if($_SESSION["role"] == "968375857" AND $_SESSION["uid"] == "9d2744d8-90db-4736-a590-27de52a941ee"): ?>
             <a href="<?php echo SYSTEM_URL ?>/add-menu" class="bg-primary text-white py-3 px-4 rounded-full" title="Add New Menu"><i class="ri-add-fill"></i></a>
           <?php endif ?>
         <?php endif ?>
@@ -29,7 +29,7 @@ include 'Partials/header.php';
 
       <div class="category-wrapper max-w-[750px] flex justify-start md:justify-center items-center gap-6 mx-auto overflow-x-auto mb-8" data-aos="fade-up">
       <?php if(isset($_SESSION["uid"]) AND isset($_SESSION["loggedin"])): ?>
-          <?php if($_SESSION["role"] === "968375857" AND $_SESSION["uid"] === "9d2744d8-90db-4736-a590-27de52a941ee"): ?>
+          <?php if($_SESSION["role"] == "968375857" AND $_SESSION["uid"] == "9d2744d8-90db-4736-a590-27de52a941ee"): ?>
             <a href="<?php echo SYSTEM_URL ?>/add-category" class="group category">
               <div class="grid place-items-center w-12 h-12 rounded-full border-2 border-white group-[.active]:border-none">
                 <i class="ri-add-fill"></i>
@@ -98,7 +98,7 @@ include 'Partials/header.php';
                   ?>
                 </div>
                 <?php if(isset($_SESSION["uid"]) && isset($_SESSION["loggedin"])): ?>
-                    <?php if($_SESSION["role"] === "968375857"): ?>
+                    <?php if($_SESSION["role"] == "968375857"): ?>
                       <button onclick="window.location.href='<?= SYSTEM_URL.'/update-menu/'.$menu->menu_id ?>'" class="block bg-primary text-white text-xs py-2 px-4 rounded-md mx-auto">Update Item</button>
                     <?php else: ?>
                       <?php if($menu->menu_stock > 0): ?>
