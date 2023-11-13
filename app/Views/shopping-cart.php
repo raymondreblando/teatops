@@ -26,18 +26,19 @@ $redirect->redirectNotCustomer(SYSTEM_URL);
           </div>
           <div class="border-b border-b-gray-300/40 py-4 px-6">
             <?php 
-                $database->DBQuery("SELECT * FROM `cart_items` LEFT JOIN `menu` ON cart_items.menu_id=menu.menu_id LEFT JOIN `price` ON cart_items.p_id=price.p_id WHERE `user_id`=? ORDER BY `cart_no` DESC", [$_SESSION['uid']]);
+                $database->DBQuery("SELECT * FROM `cart_items` LEFT JOIN `menu` ON cart_items.menu_id=menu.menu_id LEFT JOIN `price` ON cart_items.p_id=price.p_id LEFT JOIN `category` ON menu.category_id=category.category_id WHERE `user_id`=? ORDER BY `cart_no` DESC", [$_SESSION['uid']]);
                 $carts = $database->fetchAll();
                 if($database->rowCount() > 0):
                   foreach($carts as $cart):
             ?>
-                  <div class="items flex items-center justify-between py-2">
-                    <div class="flex items-center gap-3">
-                      <div class="grid place-items-center w-16">
+                  <div class="items flex justify-between py-2">
+                    <div class="flex gap-3">
+                      <div class="w-16">
                         <img src="<?= SYSTEM_URL."/uploads/menu/".$cart->menu_photo ?>" alt="<?= $cart->menu_name ?>" class="h-16">
                       </div>
                       <div>
                         <p class="text-sm text-black font-semibold leading-none"><?= $cart->menu_name ?></p>
+                        <p class="text-xs text-primary font-semibold leading-none"><?= $cart->category_name ?></p>
                         <?php if($cart->addonsPrice > 0): ?>
                           <p class="text-xs text-gray-400 font-semibold leading-none">With <?= $cart->addons ?></p>
                         <?php endif ?>
@@ -79,10 +80,6 @@ $redirect->redirectNotCustomer(SYSTEM_URL);
             <label for="order_type" class="block text-sm font-semibold text-black mb-2">Type of Order</label>
             <div class="flex flex-wrap gap-3 mb-4">
               <input type="hidden" name="order_type" id="order-type">
-              <div class="group order-type" role="button" data-value="Dine In">
-                <img src="<?php echo SYSTEM_URL ?>/public/icons/selected.svg" alt="check" class="hidden group-[.selected]:block w-4 h-4 pointer-events-none">
-                <p class="text-sm text-black font-semibold pointer-events-none">Dine In</p>
-              </div>
               <div class="group order-type" role="button" data-value="Take Out">
                 <img src="<?php echo SYSTEM_URL ?>/public/icons/selected.svg" alt="check" class="hidden group-[.selected]:block w-4 h-4 pointer-events-none">
                 <p class="text-sm text-black font-semibold pointer-events-none">Take Out</p>

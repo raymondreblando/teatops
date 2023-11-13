@@ -77,18 +77,19 @@ $order_summary = $database->fetch();
         <p class="text-sm text-black font-semibold mb-3" data-aos="fade-up">Orderred Items</p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-aos="fade-up">
           <?php
-              $database->DBQuery("SELECT * FROM `my_order` LEFT JOIN `menu` ON my_order.menu_id=menu.menu_id LEFT JOIN `price` ON my_order.p_id=price.p_id WHERE my_order.order_id = ? ORDER BY my_order.my_order_no DESC", [$order_summary->order_id]);
+              $database->DBQuery("SELECT * FROM `my_order` LEFT JOIN `menu` ON my_order.menu_id=menu.menu_id LEFT JOIN `price` ON my_order.p_id=price.p_id LEFT JOIN `category` ON menu.category_id=category.category_id WHERE my_order.order_id = ? ORDER BY my_order.my_order_no DESC", [$order_summary->order_id]);
               $items = $database->fetchAll();   
               foreach($items as $item):
           ?>
-              <div class="flex items-center justify-between py-2">
-                <div class="flex items-center gap-3">
-                  <div class="grid place-items-center w-12">
+              <div class="flex justify-between py-2">
+                <div class="flex gap-3">
+                  <div class="w-12">
                     <img src="<?php echo SYSTEM_URL."/uploads/menu/".$item->menu_photo ?>" alt="<?= $item->menu_name ?>" class="h-12">
                   </div>
                   <div>
                     <p class="text-sm text-black font-semibold"><?= $item->menu_name ?></p>
-                    <p class="text-xs text-gray-400 font-semibold">With <?= $item->addons ?></p>
+                    <p class="text-xs text-primary font-semibold"><?= $item->category_name ?></p>
+                    <p class="text-[10px] text-gray-400 font-medium"><?= !empty($item->addons) ? 'With '. $item->addons : '' ?></p>
                     <div class="flex items-center gap-2">
                       <span class="bg-primary text-white text-[10px] uppercase px-[4px] leading-none"><?= $item->p_size ?></span>
                       <p class="text-xs text-slate-500">&#8369; <?= $item->p_price." x ".$item->quantity ?></p>

@@ -117,13 +117,19 @@ function UpdateTotalAmount() {
        let totalAmount = 0;
    
        $('.items').each(function () {
-           let price = parseFloat($(this).find('.item-price').text());
-           let addons = parseFloat($(this).find('.addons-price').text());
-           let quantity = parseInt($(this).find('.item-counter').text());
-           
-           if (!isNaN(price) && !isNaN(addons) && !isNaN(quantity)) {
-               totalAmount += (price + addons) * quantity;
-           }
+              let price = parseFloat($(this).find('.item-price').text());
+              let addons = parseFloat($(this).find('.addons-price').text());
+              let quantity = parseInt($(this).find('.item-counter').text());
+              
+              let isAddons = 0;
+
+              if(addons > 0){
+                     isAddons = addons;
+              }
+
+              if (!isNaN(price) && !isNaN(quantity)) {
+                     totalAmount += (price + isAddons) * quantity;
+              }
        });
       
        $('#total-amount').text(totalAmount);

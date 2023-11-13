@@ -64,7 +64,7 @@ include 'Partials/header.php';
 
       <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         <?php 
-            $database->DBQuery("SELECT * FROM `menu`");
+            $database->DBQuery("SELECT * FROM `menu` m LEFT JOIN `category` c ON m.category_id=c.category_id ORDER BY m.menu_no DESC");
             $menus = $database->fetchAll();
             foreach($menus as $menu):
         ?>
@@ -72,7 +72,8 @@ include 'Partials/header.php';
               <div class="menu-card relative bg-white/50 py-8 px-10 rounded-2xl">
                 <span class="price-container-<?= $menu->menu_no ?> hidden absolute top-8 right-12 border-2 border-white bg-primary w-10 h-10 text-white text-[10px] font-medium rounded-full text-center leading-10 finder2">&#8369; <span class="size-price-<?= $menu->menu_no ?>"></span></span>
                 <img src="<?= SYSTEM_URL."/uploads/menu/".$menu->menu_photo ?>" alt="tea" class="h-[150px] mb-3 mx-auto">
-                <p class="text-[13px] text-black uppercase font-semibold text-center mt-2 mb-2 tracking-tighter finder1"><?= $menu->menu_name ?></p>
+                <p class="text-[13px] text-black uppercase font-semibold text-center mt-2 tracking-tighter finder1"><?= $menu->menu_name ?></p>
+                <p class="text-[11px] text-primary uppercase font-bold text-center mb-2 tracking-tighter"><?= $menu->category_name ?></p>
                 
                 <p class="text-[9px] uppercase font-bold mb-1 text-center tracking-tighter">Addons</p>
                 <div class="flex flex-wrap justify-center items-center gap-2 mb-4">

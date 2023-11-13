@@ -26,7 +26,7 @@ $redirect->redirectNotCustomer(SYSTEM_URL);
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         <?php
-             $database->DBQuery("SELECT * FROM `orders` LEFT JOIN `payments` ON orders.payment_id=payments.payment_id WHERE orders.user_id = ? ORDER BY orders.order_status DESC", [$_SESSION['uid']]);
+             $database->DBQuery("SELECT * FROM `orders` LEFT JOIN `payments` ON orders.payment_id=payments.payment_id WHERE orders.user_id = ? ORDER BY orders.order_id DESC", [$_SESSION['uid']]);
              $myOrders = $database->fetchAll();   
              foreach($myOrders as $myOrder):
         ?>
@@ -61,17 +61,18 @@ $redirect->redirectNotCustomer(SYSTEM_URL);
                 <div class="border-b border-b-gray-300/40 py-4 px-6">
                   <?php
                       //  $database->DBQuery("SELECT * FROM `orders` WHERE orders.user_id = ?", [$_SESSION['uid']]);
-                      $database->DBQuery("SELECT * FROM `my_order` LEFT JOIN `menu` ON my_order.menu_id=menu.menu_id LEFT JOIN `price` ON my_order.p_id=price.p_id WHERE my_order.order_id = ?", [$myOrder->order_id]);
+                      $database->DBQuery("SELECT * FROM `my_order` LEFT JOIN `menu` ON my_order.menu_id=menu.menu_id LEFT JOIN `price` ON my_order.p_id=price.p_id LEFT JOIN `category` ON menu.category_id=category.category_id WHERE my_order.order_id = ?", [$myOrder->order_id]);
                       $myItems = $database->fetchAll();   
                       foreach($myItems as $myItem):
                   ?>
-                      <div class="flex items-center justify-between py-2">
-                        <div class="flex items-center gap-3">
-                          <div class="grid place-items-center w-12">
+                      <div class="flex justify-between py-2">
+                        <div class="flex gap-3">
+                          <div class="w-12">
                             <img src="<?= SYSTEM_URL."/uploads/menu/".$myItem->menu_photo ?>" alt="<?= $myItem->menu_name ?>" class="h-12">
                           </div>
                           <div>
                             <p class="text-sm text-black font-semibold finder5"><?= $myItem->menu_name ?></p>
+                            <p class="text-xs text-primary font-semibold finder5"><?= $myItem->category_name ?></p>
                             <?php if($myItem->addonsPrice > 0): ?>
                               <p class="text-xs text-gray-400 font-semibold leading-none">With <?= $myItem->addons ?></p>
                             <?php endif ?>

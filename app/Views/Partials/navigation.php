@@ -121,5 +121,8 @@ if(isset($_SESSION["uid"]) AND isset($_SESSION["loggedin"])){
                             <?php endif ?>  
                      </ul>
               </div>
+              <button class="menu-btn block md:hidden">
+                     <i class="ri-menu-line text-xl"></i>
+              </button>
        </nav>
 </header>
