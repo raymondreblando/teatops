@@ -77,17 +77,20 @@ include 'Partials/header.php';
                 <img src="<?= SYSTEM_URL."/uploads/menu/".$menu->menu_photo ?>" alt="tea" class="h-[150px] mb-3 mx-auto">
                 <p class="text-[13px] text-black uppercase font-semibold text-center mt-2 tracking-tighter finder1"><?= $menu->menu_name ?></p>
                 <p class="text-[11px] text-primary uppercase font-bold text-center mb-2 tracking-tighter"><?= $menu->category_name ?></p>
+                <?php 
+                  $database->DBQuery("SELECT * FROM `addons` WHERE `category_id`=?", [$menu->category_id]);
+
+                  if($database->rowCount() > 0){
+                    echo '<p class="text-[9px] uppercase font-bold mb-1 text-center tracking-tighter">Addons</p>';
+                  }
+                ?>
                 
-                <p class="text-[9px] uppercase font-bold mb-1 text-center tracking-tighter">Addons</p>
                 <div class="flex flex-wrap justify-center items-center gap-2 mb-4">
                   <?php
-                      $database->DBQuery("SELECT * FROM `addons` WHERE `category_id`=?", [$menu->category_id]);
                       if($database->rowCount() > 0){
                         foreach($database->fetchAll() as $addon){
                             echo '<span role="button" class="addons menu-addons addons-price-'. $menu->menu_no .'" data-name="'. $addon->addons_name .'" data-no="'. $menu->menu_no .'" data-price="'. $addon->addons_price .'">'.$addon->addons_name.'</span>';
                         }
-                      }else{
-                        echo '<p class="text-[10px] font-bold mb-1 text-center">No available addons</p>';
                       }
                   ?>
                 </div>

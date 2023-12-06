@@ -1,3 +1,6 @@
+$(document).ready(function () {
+   $('#input-loader').hide();
+});
 const notification = new Notyf({
    duration: 4000,
    ripple: false,
@@ -28,10 +31,7 @@ function transferData(url, data) {
       processData: false,
       success: function (response) {
          check_toast_identifier(response);
-      },
-      error: function (response) {
-         console.log(response);
-      },
+      }
    });
 }
 $(document).on('click', '#login', function () {
@@ -52,6 +52,7 @@ $(document).on('click', '#register', function () {
    let gender = $('#r_gender').val();
    let contact = $('#r_phone_number').val();
    let address = $('#r_address').val();
+   let email = $('#r_email').val();
    let password = $('#r_password').val();
    let c_password = $('#r_confirm_password').val();
 
@@ -60,11 +61,100 @@ $(document).on('click', '#register', function () {
    form_data.append('gender', gender);
    form_data.append('contact', contact);
    form_data.append('address', address);
+   form_data.append('email', email);
    form_data.append('password', password);
    form_data.append('c_password', c_password);
 
    url = 'app/Handlers/process_registration.php';
    transferData(url, form_data);
+});
+$(document).on('click', '#verify-email', function () {
+   $('#verify-email').hide();
+   $('#input-loader').show();
+   let form_data = new FormData();
+   form_data.append('f_email', $('#f_email').val());
+
+   $.ajax({
+      type: 'POST',
+      url: 'app/Handlers/process_forgot_verify_email.php',
+      data: form_data,
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+         check_toast_identifier(response);
+
+         if(response.others.length > 1){
+            window.location.href = response.others;
+         }
+
+         $('#input-loader').hide();
+         $('#verify-email').show();
+      }
+   });
+});
+$(document).on('click', '#save-new-password', function () {
+   let form_data = new FormData();
+   let email = $(this).data('email');
+   let code = $(this).data('code');
+   let new_password = $('#f_new_password').val();
+   let confirm_password = $('#f_confirm_password').val();
+
+   form_data.append('email', email);
+   form_data.append('code', code);
+   form_data.append('new_password', new_password);
+   form_data.append('confirm_password', confirm_password);
+
+   $.ajax({
+      type: 'POST',
+      url: './../../app/Handlers/process_forgot_change_password.php',
+      data: form_data,
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+         check_toast_identifier(response);
+
+         if(response.others.length > 1){
+            window.location.href = response.others;
+         }
+      },
+      error: function(response){
+         console.log(response);
+      }
+   });
+});
+$(document).on('click', '#verify-code', function () {
+   let verificationCode = '';
+   $('.code-input').each(function() {
+      verificationCode += $(this).val();
+   });
+
+   let form_data = new FormData();
+   form_data.append('email_address', $('#email_address').text());
+   form_data.append('verificationCode', verificationCode);
+
+   $.ajax({
+      type: 'POST',
+      url: './../../app/Handlers/process_forgot_verify_code.php',
+      data: form_data,
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+         check_toast_identifier(response);
+
+         if(response.others.length > 1){
+            window.location.href = response.others;
+         }
+      },
+      error: function (response) {
+         console.log(response);
+      },
+   });
 });
 $(document).on('click', '#saveCategory', function () {
    let form_data = new FormData();

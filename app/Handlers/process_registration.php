@@ -6,11 +6,14 @@ $username = $functions->validate($_POST['username']);
 $gender = $functions->validate($_POST['gender']);
 $contact = $functions->validate($_POST['contact']);
 $address = $functions->validate($_POST['address']);
+$email = $functions->validate($_POST['email']);
 $password = $functions->validate($_POST['password']);
 $c_password = $functions->validate($_POST['c_password']);
 
-if(empty($fullname) OR empty($username) OR empty($gender) OR empty($contact) OR empty($address) OR empty($password) OR empty($c_password)){
+if(empty($fullname) OR empty($username) OR empty($gender) OR empty($contact) OR empty($address) OR empty($email) OR empty($password) OR empty($c_password)){
        $functions->toast_message("Please fill-up all the fields.", "error", "no", "");
+}elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+       $functions->toast_message("Invalid email address.", "error", "no", "");
 }elseif($password !== $c_password){
        $functions->toast_message("Passwords didn't match.", "error", "no", "");
 }elseif(strlen($password) < 6){
@@ -22,7 +25,7 @@ if(empty($fullname) OR empty($username) OR empty($gender) OR empty($contact) OR 
        if($database->rowCount() > 0){
               $functions->toast_message("Username already taken. Try other username.", "error", "no", "");
        }else{
-              $database->DBQuery("INSERT INTO `users` (`user_id`,`username`,`password`,`fullname`,`gender`,`contact`,`address`,`date_created`) VALUES (?,?,?,?,?,?,?,?)",[RANDOM_ID, $username, md5($password), $fullname, $gender, $contact, $address, TODAYS]);
+              $database->DBQuery("INSERT INTO `users` (`user_id`,`username`,`password`,`fullname`,`gender`,`contact`,`address`,`email`,`date_created`) VALUES (?,?,?,?,?,?,?,?,?)",[RANDOM_ID, $username, md5($password), $fullname, $gender, $contact, $address, $email, TODAYS]);
               $functions->toast_message("Successfully Register.", "success", "yes", "");
        }
 }

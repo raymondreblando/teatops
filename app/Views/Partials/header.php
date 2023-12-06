@@ -14,5 +14,6 @@
   <link rel="stylesheet" href="<?php echo SYSTEM_URL ?>/resources/styles/index.css">
   <link rel="stylesheet" href="<?php echo SYSTEM_URL ?>/resources/styles/remixicon.css">
   <link rel="stylesheet" href="<?php echo SYSTEM_URL ?>/resources/styles/aos.css">
+  <link rel="stylesheet" href="<?php echo SYSTEM_URL ?>/resources/styles/loader.css">
   <link rel="stylesheet" href="<?php echo SYSTEM_URL ?>/resources/styles/toast.css">
 </head>

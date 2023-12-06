@@ -21,9 +21,9 @@ $redirect->checkLoggedIn(SYSTEM_URL);
         <div class="relative w-max mx-auto mb-6" data-aos="fade-up">
           <input type="file" name="profile" class="dp-input" hidden>
           <img src="<?php echo SYSTEM_URL."/public/images/".strtolower($user_data->gender).".svg" ?>" alt="profile" class="profile-image w-[120px] h-[120px] rounded-full object-cover">
-          <!-- <button class="upload-profile absolute bottom-0 right-4 bg-white rounded-full">
-            <img src="<?php echo SYSTEM_URL ?>/public/icons/refresh-circle-bold.svg" alt="refresh" class="w-7 h-7">
-          </button> -->
+          <button class="upload-profile absolute bottom-0 right-4 w-8 h-8 flex items-center justify-center text-lg bg-white border-2 border-primary rounded-full" title="Upload New Profile">
+            <i class="ri-upload-cloud-line"></i>
+          </button>
         </div>
         <p class="text-xl text-black text-center font-semibold mb-6" data-aos="fade-up">Manage Personal Information</p>
         <form autocomplete="off" class="mb-8" data-aos="fade-up">
@@ -60,6 +60,14 @@ $redirect->checkLoggedIn(SYSTEM_URL);
           <label for="address" class="block text-sm font-semibold text-gray-600 mb-1">Address</label>
           <input type="text" id="address" value="<?php echo $user_data->address ?>"  class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4 mb-3">
           <button type="button" id="updateProfile" class="block w-full h-12 bg-primary text-white rounded-md">Update Information</button>
+        </form>
+        <p class="text-xl text-black text-center font-semibold mb-6" data-aos="fade-up">Account Verification</p>
+        <form autocomplete="off" class="mb-8" data-aos="fade-up">
+          <label for="r_front_id" class="block text-sm font-semibold text-gray-600 uppercase mb-1">Upload Front of ID</label>
+          <input type="file" id="r_front_id" class="w-full h-10 text-xs  file:text-primary file:text-xs file:bg-light-pink file:border-none file:mt-2 bg-white border border-gray-300/400 rounded-md outline-none px-4 mb-3">
+          <label for="r_back_id" class="block text-sm font-semibold text-gray-600 uppercase mb-1">Upload Back of ID</label>
+          <input type="file" id="r_back_id" class="w-full h-10 text-xs  file:text-primary file:text-xs file:bg-light-pink file:border-none file:mt-2 bg-white border border-gray-300/400 rounded-md outline-none px-4 mb-3">
+          <button type="button" id="updateProfile" class="block w-full h-12 bg-primary text-white rounded-md">Upload</button>
         </form>
         <p class="text-xl text-black text-center font-semibold mb-6" data-aos="fade-up">Manage Account Security</p>
         <form autocomplete="off" data-aos="fade-up">

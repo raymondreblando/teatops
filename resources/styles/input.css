@@ -37,15 +37,11 @@ textarea{
 }
 
 .custom-scroll::-webkit-scrollbar{
-  @apply w-[5px];
+  @apply w-[7px];
 }
 
 .custom-scroll::-webkit-scrollbar-thumb{
-  @apply w-[5px] rounded-lg bg-transparent;
-}
-
-.custom-scroll:hover::-webkit-scrollbar-thumb{
-  @apply bg-gray-300;
+  @apply w-[7px] bg-gray-200;
 }
 
 .spinner {

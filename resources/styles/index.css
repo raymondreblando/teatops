@@ -760,6 +760,10 @@ video {
   max-height: 200px;
 }
 
+.max-h-\[350px\]{
+  max-height: 350px;
+}
+
 .min-h-\[130px\]{
   min-height: 130px;
 }
@@ -1039,12 +1043,21 @@ video {
   border-bottom-width: 1px;
 }
 
+.border-none{
+  border-style: none;
+}
+
 .border-gray-300\/40{
   border-color: rgb(209 213 219 / 0.4);
 }
 
 .border-gray-300\/50{
   border-color: rgb(209 213 219 / 0.5);
+}
+
+.border-primary{
+  --tw-border-opacity: 1;
+  border-color: rgb(241 67 122 / var(--tw-border-opacity));
 }
 
 .border-white{
@@ -1079,6 +1092,11 @@ video {
 .bg-rose-500{
   --tw-bg-opacity: 1;
   background-color: rgb(244 63 94 / var(--tw-bg-opacity));
+}
+
+.bg-rose-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(225 29 72 / var(--tw-bg-opacity));
 }
 
 .bg-secondary\/20{
@@ -1209,6 +1227,10 @@ video {
   padding-bottom: 2rem;
 }
 
+.pr-2{
+  padding-right: 0.5rem;
+}
+
 .pt-24{
   padding-top: 6rem;
 }
@@ -1229,6 +1251,15 @@ video {
   text-align: center;
 }
 
+.text-right{
+  text-align: right;
+}
+
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -1246,6 +1277,10 @@ video {
 
 .text-\[10px\]{
   font-size: 10px;
+}
+
+.text-\[11px\]{
+  font-size: 11px;
 }
 
 .text-\[12px\]{
@@ -1283,10 +1318,6 @@ video {
 .text-xs{
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-\[11px\]{
-  font-size: 11px;
 }
 
 .font-bold{
@@ -1332,6 +1363,10 @@ video {
 .text-black{
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-black\/60{
+  color: rgb(0 0 0 / 0.6);
 }
 
 .text-gray-400{
@@ -1437,18 +1472,13 @@ textarea{
 }
 
 .custom-scroll::-webkit-scrollbar{
-  width: 5px;
+  width: 7px;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb{
-  width: 5px;
-  border-radius: 0.5rem;
-  background-color: transparent;
-}
-
-.custom-scroll:hover::-webkit-scrollbar-thumb{
+  width: 7px;
   --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
 .spinner {
@@ -1770,6 +1800,39 @@ textarea{
   color: rgb(241 67 122 / var(--tw-text-opacity));
 }
 
+.file\:mt-2::file-selector-button{
+  margin-top: 0.5rem;
+}
+
+.file\:border-none::file-selector-button{
+  border-style: none;
+}
+
+.file\:bg-light-pink::file-selector-button{
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 239 241 / var(--tw-bg-opacity));
+}
+
+.file\:text-xs::file-selector-button{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.file\:text-primary::file-selector-button{
+  --tw-text-opacity: 1;
+  color: rgb(241 67 122 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-black::-moz-placeholder{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-black::placeholder{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .placeholder\:text-gray-600::-moz-placeholder{
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
@@ -1795,6 +1858,10 @@ textarea{
 }
 
 @media (min-width: 768px){
+  .md\:col-span-2{
+    grid-column: span 2 / span 2;
+  }
+
   .md\:mx-0{
     margin-left: 0px;
     margin-right: 0px;
@@ -1835,6 +1902,10 @@ textarea{
 
   .md\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-4{
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .md\:flex-row{

@@ -120,3 +120,20 @@ addEvent(".notification", "click", ({ currentTarget }) => {
 addEvent(".addons", "click", ({ target }) => {
   target.classList.toggle("active");
 }, "all")
+
+addEvent(".code-input", "input", ({ target }) => {
+  const nextInput = target.nextElementSibling;
+
+  if (target.value !== "" && nextInput) {
+    nextInput.focus();
+  } 
+}, "all")
+
+addEvent(".code-input", "keydown", (e) => {
+  const { key, target } = e;
+  const prevInput = target.previousElementSibling;
+
+  if (target.value === "" && key === "Backspace" && prevInput) {
+    prevInput.focus();
+  } 
+}, "all")

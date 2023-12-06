@@ -42,6 +42,7 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
             <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Gender</th>
             <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Contact Number</th>
             <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Address</th>
+            <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">ID</th>
             <th width="13%" class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Action</th>
           </thead>
           <tbody>
@@ -66,6 +67,9 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
                 <td class="text-sm py-4 px-4"><?= $account->gender ?></td>
                 <td class="text-sm py-4 px-4"><?= $account->contact ?></td>
                 <td class="text-sm py-4 px-4"><?= $account->address ?></td>
+                <td class="text-sm py-4 px-4">
+                  <a href="<?= SYSTEM_URL ?>/id/<?= $account->user_id ?>" class="text-[10px] text-primary font-semibold uppercase bg-light-pink py-2 px-3 rounded-sm">View ID</a>
+                </td>
                 <td class="text-sm py-4 px-4">
                   <?php if($account->active === "no"): ?>
                       <button type="button" data-value="yes"  data-identifier="<?= $account->user_id ?>" class="block_unblock block w-full bg-emerald-600 text-white py-2 px-4 rounded-md">Unblock Account</button>

@@ -31,11 +31,23 @@ Flight::route('/order-details/@id', function($id){
 Flight::route('/accounts', function(){
     Flight::render('Views/accounts.php');
 });
+Flight::route('/id/@id', function($id){
+    Flight::render('Views/view-id.php', array('id' => $id));
+});
 Flight::route('/profile', function(){
     Flight::render('Views/profile.php');
 });
 Flight::route('/logout', function(){
     Flight::render('Views/system_logout.php');
+});
+Flight::route('/forget-password', function(){
+    Flight::render('Views/forget-password.php');
+});
+Flight::route('/code/verify/@email', function($email){
+    Flight::render('Views/code-verify.php', array('email' => $email));
+});
+Flight::route('/new-password/@email/@code', function($email, $code){
+    Flight::render('Views/new-password.php', array('email' => $email, 'code' => $code));
 });
 // Route for handling 403 Forbidden error
 Flight::map('error403', function(){

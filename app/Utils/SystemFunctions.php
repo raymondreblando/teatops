@@ -18,6 +18,13 @@ class SystemFunctions
             }
             return $string;
     }
+    public function generatePin() {
+        $pin = rand(1000, 9999);
+
+        $pin = str_pad($pin, 4, '0', STR_PAD_LEFT);
+    
+        return $pin;
+    }      
     public function formatDateTime($date, $format){ 
         $formattedDate = date($format, strtotime($date));
         return $formattedDate;

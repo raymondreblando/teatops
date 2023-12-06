@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2023 at 12:13 PM
+-- Generation Time: Nov 21, 2023 at 01:26 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -49,7 +49,7 @@ CREATE TABLE `cart_items` (
   `p_id` text NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT 1,
   `addons` text NOT NULL,
-  `addonsPrice` int(11) NOT NULL
+  `addonsPrice` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -64,6 +64,19 @@ CREATE TABLE `category` (
   `category_name` varchar(60) NOT NULL,
   `category_icon` varchar(50) NOT NULL,
   `category_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `code`
+--
+
+CREATE TABLE `code` (
+  `code_no` int(11) NOT NULL,
+  `code_id` text NOT NULL,
+  `email` text NOT NULL,
+  `code` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -193,6 +206,7 @@ CREATE TABLE `users` (
   `username` varchar(60) NOT NULL,
   `password` text NOT NULL,
   `fullname` text NOT NULL,
+  `email` text NOT NULL,
   `gender` varchar(6) NOT NULL,
   `contact` varchar(11) NOT NULL,
   `address` text NOT NULL,
@@ -205,9 +219,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_no`, `user_id`, `role_id`, `username`, `password`, `fullname`, `gender`, `contact`, `address`, `active`, `built_in`, `date_created`) VALUES
-(1, '9d2744d8-90db-4736-a590-27de52a941ee', 968375857, 'Admin', '0192023a7bbd73250516f069df18b500', 'Default Admin', 'Male', '09999999999', 'Polangui Albay', 'yes', 'yes', '2023-08-19 20:43:12'),
-(83, '6f905805-f3c0-4e45-8e1f-a23901764d8c', 564570857, 'Spiderman', '992e63080ee1e47b99f42b8d64ede953', 'Tom Holland', 'Male', '09322550100', 'Balogo, Oas, Albay', 'yes', 'no', '2023-09-22 21:00:44');
+INSERT INTO `users` (`user_no`, `user_id`, `role_id`, `username`, `password`, `fullname`, `email`, `gender`, `contact`, `address`, `active`, `built_in`, `date_created`) VALUES
+(1, '9d2744d8-90db-4736-a590-27de52a941ee', 968375857, 'Admin', '0192023a7bbd73250516f069df18b500', 'Default Admin', 'admin@admin.com', 'Male', '09999999999', 'Polangui Albay', 'yes', 'yes', '2023-08-19 20:43:12');
 
 --
 -- Indexes for dumped tables
@@ -230,6 +243,12 @@ ALTER TABLE `cart_items`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`category_no`);
+
+--
+-- Indexes for table `code`
+--
+ALTER TABLE `code`
+  ADD PRIMARY KEY (`code_no`);
 
 --
 -- Indexes for table `menu`
@@ -302,6 +321,12 @@ ALTER TABLE `category`
   MODIFY `category_no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `code`
+--
+ALTER TABLE `code`
+  MODIFY `code_no` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
@@ -347,7 +372,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `user_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
