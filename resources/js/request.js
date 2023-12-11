@@ -7,7 +7,16 @@ const notification = new Notyf({
    dismissible: true,
    position: { x: 'center', y: 'top' },
 });
-
+function isNumeric(evt) {
+   var theEvent = evt || window.event;
+   var key = theEvent.keyCode || theEvent.which;
+   key = String.fromCharCode(key);
+   var regex = /[0-9]|\./;
+   if (!regex.test(key)) {
+     theEvent.returnValue = false;
+     if (theEvent.preventDefault) theEvent.preventDefault();
+   }
+}
 function check_toast_identifier(response) {
    if (response.identifier === 'toast') {
       notification[response.type](response.message);
@@ -30,9 +39,30 @@ function transferData(url, data) {
       contentType: false,
       processData: false,
       success: function (response) {
+         console.log(response);
          check_toast_identifier(response);
+      },
+      error: function (response) {
+         console.log(response);
       }
    });
+}
+function getMyOrderList(){
+   $.ajax({
+      type: 'GET',
+      url: 'app/Handlers/process_my_order_list.php',
+      success: function (response) {
+         $('#reload-div').html(response);
+         addEvent(".cancel-order-btn", "click", (e) => {
+            const parent = e.target.parentElement.parentElement.parentElement;
+            const cancelContainer = parent.querySelector(".cancel-order");
+            cancelContainer.classList.add("show");
+         }, "all")
+      },
+      error: function(response){
+        console.log(response);
+      }
+    });
 }
 $(document).on('click', '#login', function () {
    let form_data = new FormData();
@@ -51,19 +81,31 @@ $(document).on('click', '#register', function () {
    let username = $('#r_username').val();
    let gender = $('#r_gender').val();
    let contact = $('#r_phone_number').val();
-   let address = $('#r_address').val();
+   let r_street = $('#r_street').val();
+   let r_zone = $('#r_zone').val();
+   let r_barangay = $('#r_barangay').val();
+   let r_municipality = $('#r_municipality').val();
+   let r_province = $('#r_province').val();
    let email = $('#r_email').val();
    let password = $('#r_password').val();
    let c_password = $('#r_confirm_password').val();
+   let r_front_id = $('#r_front_id').prop('files')[0];
+   let r_back_id = $('#r_back_id').prop('files')[0];
 
    form_data.append('fullname', fullname);
    form_data.append('username', username);
    form_data.append('gender', gender);
    form_data.append('contact', contact);
-   form_data.append('address', address);
+   form_data.append('r_street', r_street);
+   form_data.append('r_zone', r_zone);
+   form_data.append('r_barangay', r_barangay);
+   form_data.append('r_municipality', r_municipality);
+   form_data.append('r_province', r_province);
    form_data.append('email', email);
    form_data.append('password', password);
    form_data.append('c_password', c_password);
+   form_data.append('r_front_id', r_front_id);
+   form_data.append('r_back_id', r_back_id);
 
    url = 'app/Handlers/process_registration.php';
    transferData(url, form_data);
@@ -227,13 +269,25 @@ $(document).on('click', '#updateProfile', function () {
    let username = $('#username1').val();
    let gender = $('#gender').val();
    let phone_number = $('#phone_number').val();
-   let address = $('#address').val();
+   let street = $('#street').val();
+   let zone = $('#zone').val();
+   let barangay = $('#barangay').val();
+   let municipality = $('#municipality').val();
+   let province = $('#province').val();
+   let email = $('#email').val();
+   let profile_picture = $('#profile_picture').prop('files')[0];
 
    form_data.append('fullname', fullname);
    form_data.append('username', username);
    form_data.append('gender', gender);
    form_data.append('phone_number', phone_number);
-   form_data.append('address', address);
+   form_data.append('street', street);
+   form_data.append('zone', zone);
+   form_data.append('barangay', barangay);
+   form_data.append('municipality', municipality);
+   form_data.append('province', province);
+   form_data.append('email', email);
+   form_data.append('profile_picture', profile_picture);
 
    url = 'app/Handlers/process_profile.php';
    transferData(url, form_data);
@@ -314,6 +368,31 @@ $(document).on('click', '.saveOrder', function () {
       },
    });
 });
+function checkQuantity(){
+   let paymentType = $('#payment-method').val();
+
+   if(paymentType == "Cash on Delivery"){
+      let totalQuantity = 0;
+      $('.item-counter').each(function () {
+         totalQuantity += parseInt($(this).text(), 10);
+      });
+      if(totalQuantity > 10){
+         $('#codMessage').removeClass('hidden');
+         $('#placeOrder').addClass('hidden');
+         return true;
+      }else{
+         $('#codMessage').addClass('hidden');
+         $('#placeOrder').removeClass('hidden');
+         return false;
+      }
+   }else{
+      $('#codMessage').addClass('hidden');
+      $('#placeOrder').removeClass('hidden');
+   }
+}
+$(document).on('click', '.pmethod', function () {
+   checkQuantity();
+});
 $(document).on('click', '#confirmOrder', function () {
    let form_data = new FormData();
    let identifier = $(this).data('id');
@@ -375,6 +454,7 @@ $(document).on('click', '.decrement', function () {
       newCountValue = currentValue - 1;
       counter.text(newCountValue);
       UpdateTotalAmount();
+      checkQuantity();
 
       let form_data = new FormData();
       form_data.append('identifier', identifier);
@@ -403,6 +483,7 @@ $(document).on('click', '.increment', function () {
    newCountValue = currentValue + 1;
    counter.text(newCountValue);
    UpdateTotalAmount();
+   checkQuantity();
 
    let form_data = new FormData();
    form_data.append('identifier', identifier);
@@ -416,4 +497,15 @@ $(document).on('click', '.increment', function () {
       contentType: false,
       processData: false,
    });
+});
+$(document).on('click', '.verify-id', function () {
+   let form_data = new FormData();
+   let identifier = $(this).data('id');
+   let valueVerification = $(this).data('value');
+
+   form_data.append('identifier', identifier);
+   form_data.append('valueVerification', valueVerification);
+
+   url = './../app/Handlers/process_id_verification.php';
+   transferData(url, form_data);
 });

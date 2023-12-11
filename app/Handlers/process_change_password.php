@@ -14,8 +14,8 @@ if(empty($current_password_1)){
 }else{
        $database->DBQuery("SELECT * FROM `users` WHERE `password`=? AND `user_id`=?",[md5($current_password_1), $_SESSION['uid']]);
        if($database->rowCount() > 0){
-              if(strlen($new_password_1) < 6){
-                     $functions->toast_message("Password must be more than 6 characters.", "error", "no", "");
+              if(strlen($new_password_1) < 7){
+                     $functions->toast_message("Password must be more than 7 characters.", "error", "no", "");
               }elseif($new_password_1 !== $confirm_password_1){
                      $functions->toast_message("Confirm Passwords didn't match.", "error", "no", "");
               }else{

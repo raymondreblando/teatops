@@ -37,7 +37,7 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
               <thead>
                 <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Size</th>
                 <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Price</th>
-                <th width="18%" class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Action</th>
+                <th width="18%" class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40"></th>
               </thead>
                 <tbody></tbody>
             </table>
@@ -52,7 +52,7 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
               <thead>
                 <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Name</th>
                 <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Price</th>
-                <th width="18%" class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Action</th>
+                <th width="18%" class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40"></th>
               </thead>
                 <tbody></tbody>
             </table>

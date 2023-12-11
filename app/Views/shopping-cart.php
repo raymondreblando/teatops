@@ -101,6 +101,7 @@ $redirect->redirectNotCustomer(SYSTEM_URL);
                 <p class="text-sm text-black font-semibold pointer-events-none">Cash on Delivery</p>
               </div>
             </div>
+            <p id="codMessage" class="hidden font-semibold text-rose-500">Maximum quantity was reached for Cash on Delivery. Maximum quantity is 10.</p>
             <button type="button" id="placeOrder" class="w-full h-12 bg-primary text-white text-sm rounded-md">Place Order</button>
           </form>
         </div>

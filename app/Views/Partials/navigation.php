@@ -105,7 +105,7 @@ if(isset($_SESSION["uid"]) AND isset($_SESSION["loggedin"])){
                                           </div>
                                    <?php endif ?>
                                    <li class="flex items-center gap-2">
-                                          <img src="<?php echo SYSTEM_URL."/public/images/".strtolower($user_data->gender).".svg" ?>" alt="profile" class="w-9 h-9">
+                                          <img src="<?php echo SYSTEM_URL."/uploads/profile/".$user_data->profile ?>" alt="profile" class="w-9 h-9 rounded-full object-cover">
                                           <div>
                                                  <p class="text-sm text-black font-semibold"><?php echo $user_data->fullname ?></p>
                                                  <p class="text-xs text-slate-500"><?php echo $user_data->role_name ?></p>

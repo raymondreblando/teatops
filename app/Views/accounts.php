@@ -42,6 +42,7 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
             <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Gender</th>
             <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Contact Number</th>
             <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Address</th>
+            <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">ID Verification</th>
             <th class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">ID</th>
             <th width="13%" class="text-xs uppercase text-gray-700 py-4 px-4 border-b border-b-gray-300/40">Action</th>
           </thead>
@@ -66,7 +67,8 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
                 </td>
                 <td class="text-sm py-4 px-4"><?= $account->gender ?></td>
                 <td class="text-sm py-4 px-4"><?= $account->contact ?></td>
-                <td class="text-sm py-4 px-4"><?= $account->address ?></td>
+                <td class="text-sm py-4 px-4"><?= $account->street. ' ' .$account->zone. ' ' .$account->barangay. ' ' .$account->municipal. ' ' .$account->province ?></td>
+                <td class="text-sm py-4 px-4"><?= $account->id_verification ?></td>
                 <td class="text-sm py-4 px-4">
                   <a href="<?= SYSTEM_URL ?>/id/<?= $account->user_id ?>" class="text-[10px] text-primary font-semibold uppercase bg-light-pink py-2 px-3 rounded-sm">View ID</a>
                 </td>

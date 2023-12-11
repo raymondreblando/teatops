@@ -63,7 +63,7 @@ $order_summary = $database->fetch();
             <img src="<?php echo SYSTEM_URL ?>/public/icons/location-bold.svg" alt="location" class="w-9 h-9">
             <div>
               <p class="text-sm text-gray-700 font-semibold">Shipping Address</p>
-              <p class="text-xs text-gray-700 font-semibold"><?php echo $order_summary->address ?></p>
+              <p class="text-xs text-gray-700 font-semibold"><?php echo $order_summary->street. ' ' .$order_summary->zone. ' ' .$order_summary->barangay. ' ' .$order_summary->municipal. ' ' .$order_summary->province ?></p>
             </div>
           </div>
           <div class="flex items-center gap-3">

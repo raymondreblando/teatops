@@ -47,7 +47,7 @@
             </div>
             <div>
               <label for="r_phone_number" class="block text-sm font-semibold text-gray-600 uppercase mb-1">Phone Number</label>
-              <input type="text" id="r_phone_number" class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4" maxLength="11">
+              <input type="text" id="r_phone_number" class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4" onkeypress="return isNumeric(event)" oninput="maxNumLength(this)" maxlength = "11">
             </div>
           </div>
           <div class="grid md:grid-cols-4 gap-3 mb-3">
@@ -77,19 +77,21 @@
           <div class="grid md:grid-cols-2 gap-4 mb-3">
             <div>
               <label for="r_password" class="block text-sm font-semibold text-gray-600 uppercase mb-1">Password</label>
-              <input type="password" id="r_password" class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4">
+              <input type="password" id="r_password" class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4 mb-1">
+              <p class="text-xs font-medium">Must be 7 characters length</p>
             </div>
             <div>
               <label for="r_confirm_password" class="block text-sm font-semibold text-gray-600 uppercase mb-1">Confirm Password</label>
-              <input type="password" id="r_confirm_password" class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4">
+              <input type="password" id="r_confirm_password" class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4 mb-1">
+              <p class="text-xs font-medium">Must be 7 characters length</p>
             </div>
             <div>
               <label for="r_front_id" class="block text-sm font-semibold text-gray-600 uppercase mb-1">Upload Front of ID</label>
-              <input type="file" id="r_front_id" class="w-full h-10 text-xs  file:text-primary file:text-xs file:bg-light-pink file:border-none file:mt-2 border border-gray-300/400 rounded-md outline-none px-4">
+              <input type="file" id="r_front_id" class="w-full h-10 text-xs  file:text-primary file:text-xs file:bg-light-pink file:border-none file:mt-2 border border-gray-300/400 rounded-md outline-none px-4" accept=".jpg, .jpeg, .png">
             </div>
             <div>
               <label for="r_back_id" class="block text-sm font-semibold text-gray-600 uppercase mb-1">Upload Back of ID</label>
-              <input type="file" id="r_back_id" class="w-full h-10 text-xs  file:text-primary file:text-xs file:bg-light-pink file:border-none file:mt-2 border border-gray-300/400 rounded-md outline-none px-4">
+              <input type="file" id="r_back_id" class="w-full h-10 text-xs  file:text-primary file:text-xs file:bg-light-pink file:border-none file:mt-2 border border-gray-300/400 rounded-md outline-none px-4" accept=".jpg, .jpeg, .png">
             </div>
           </div>
         </div>

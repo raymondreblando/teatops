@@ -13,8 +13,8 @@ if($database->rowCount() > 0){
   }elseif(empty($confirm_password)){
           $functions->toast_message("Please confirm your new password.", "error", "no", "");
   }else{
-    if(strlen($new_password) < 6){
-        $functions->toast_message("Password must be more than 6 characters.", "error", "no", "");
+    if(strlen($new_password) < 7){
+        $functions->toast_message("Password must be more than 7 characters.", "error", "no", "");
     }elseif($new_password !== $confirm_password){
         $functions->toast_message("Confirm Passwords didn't match.", "error", "no", "");
     }else{

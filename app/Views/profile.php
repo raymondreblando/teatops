@@ -19,8 +19,8 @@ $redirect->checkLoggedIn(SYSTEM_URL);
 
       <div class="max-w-[500px] mx-auto pb-8">
         <div class="relative w-max mx-auto mb-6" data-aos="fade-up">
-          <input type="file" name="profile" class="dp-input" hidden>
-          <img src="<?php echo SYSTEM_URL."/public/images/".strtolower($user_data->gender).".svg" ?>" alt="profile" class="profile-image w-[120px] h-[120px] rounded-full object-cover">
+          <input type="file" name="profile" id="profile_picture" class="dp-input" hidden>
+          <img src="<?php echo SYSTEM_URL."/uploads/profile/".$user_data->profile ?>" alt="profile" class="profile-image w-[120px] h-[120px] rounded-full object-cover">
           <button class="upload-profile absolute bottom-0 right-4 w-8 h-8 flex items-center justify-center text-lg bg-white border-2 border-primary rounded-full" title="Upload New Profile">
             <i class="ri-upload-cloud-line"></i>
           </button>
@@ -56,19 +56,41 @@ $redirect->checkLoggedIn(SYSTEM_URL);
               <label for="phone_number" class="block text-sm font-semibold text-gray-600 mb-1">Phone Number</label>
               <input type="text" id="phone_number" value="<?php echo $user_data->contact ?>"  class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4">
             </div>
+            <div>
+              <label for="street" class="block text-sm font-semibold text-gray-600 mb-1">Street</label>
+              <input type="text" id="street" value="<?php echo $user_data->street ?>" class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4">
+            </div>
+            <div>
+              <label for="zone" class="block text-sm font-semibold text-gray-600 mb-1">Zone #</label>
+              <input type="text" id="zone" value="<?php echo $user_data->zone ?>" class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4">
+            </div>
+            <div>
+              <label for="barangay" class="block text-sm font-semibold text-gray-600 mb-1">Barangay</label>
+              <input type="text" id="barangay" value="<?php echo $user_data->barangay ?>" class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4">
+            </div>
+            <div>
+              <label for="municipality" class="block text-sm font-semibold text-gray-600 mb-1">Municipality</label>
+              <input type="text" id="municipality" value="<?php echo $user_data->municipal ?>" class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4">
+            </div>
+            <div>
+              <label for="province" class="block text-sm font-semibold text-gray-600 mb-1">Province</label>
+              <input type="text" id="province" value="<?php echo $user_data->province ?>" class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4">
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-semibold text-gray-600 mb-1">Email</label>
+              <input type="text" id="email" value="<?php echo $user_data->email ?>" class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4">
+            </div>
           </div>
-          <label for="address" class="block text-sm font-semibold text-gray-600 mb-1">Address</label>
-          <input type="text" id="address" value="<?php echo $user_data->address ?>"  class="w-full h-10 border border-gray-300/400 rounded-md outline-none px-4 mb-3">
           <button type="button" id="updateProfile" class="block w-full h-12 bg-primary text-white rounded-md">Update Information</button>
         </form>
-        <p class="text-xl text-black text-center font-semibold mb-6" data-aos="fade-up">Account Verification</p>
+        <!-- <p class="text-xl text-black text-center font-semibold mb-6" data-aos="fade-up">Account Verification</p>
         <form autocomplete="off" class="mb-8" data-aos="fade-up">
           <label for="r_front_id" class="block text-sm font-semibold text-gray-600 uppercase mb-1">Upload Front of ID</label>
           <input type="file" id="r_front_id" class="w-full h-10 text-xs  file:text-primary file:text-xs file:bg-light-pink file:border-none file:mt-2 bg-white border border-gray-300/400 rounded-md outline-none px-4 mb-3">
           <label for="r_back_id" class="block text-sm font-semibold text-gray-600 uppercase mb-1">Upload Back of ID</label>
           <input type="file" id="r_back_id" class="w-full h-10 text-xs  file:text-primary file:text-xs file:bg-light-pink file:border-none file:mt-2 bg-white border border-gray-300/400 rounded-md outline-none px-4 mb-3">
           <button type="button" id="updateProfile" class="block w-full h-12 bg-primary text-white rounded-md">Upload</button>
-        </form>
+        </form> -->
         <p class="text-xl text-black text-center font-semibold mb-6" data-aos="fade-up">Manage Account Security</p>
         <form autocomplete="off" data-aos="fade-up">
           <label for="current_password_1" class="block text-sm font-semibold text-gray-600 mb-1">Current Account Password</label>

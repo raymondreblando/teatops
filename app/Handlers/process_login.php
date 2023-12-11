@@ -14,7 +14,9 @@ if(empty($username) OR empty($password)){
     $database->DBQuery("SELECT * FROM `users` WHERE `username` = ? AND `password` = ?", [$username, md5($password)]);
     $user = $database->fetch();
     if($database->rowCount() > 0){
-        if($user->active === "yes"){
+        if($user->id_verification === "For Verification") {
+            $functions->toast_message("Your account is for verification.", "error", "no", "");
+        } elseif($user->active === "yes"){
             $_SESSION["loggedin"] = true;
             $_SESSION["uid"] = $user->user_id;
             $_SESSION["fullname"] = $user->fullname;
