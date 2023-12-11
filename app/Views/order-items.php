@@ -12,6 +12,7 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
 $database->DBQuery("SELECT * FROM `orders` LEFT JOIN `payments` ON orders.order_id=payments.order_id LEFT JOIN `users` ON orders.user_id=users.user_id LEFT JOIN `role` ON users.role_id=role.role_id WHERE orders.order_id = ?", [$id]);
 
 $order_summary = $database->fetch();
+$profile_pic = isset($order_summary->profile) ? $order_summary->profile : $order_summary->gender.'.svg';
 
 ?>
 <body>
@@ -26,7 +27,7 @@ $order_summary = $database->fetch();
       <div class="max-w-[500px] mx-auto bg-white/50 rounded-2xl p-8">
         <div class="flex items-center justify-between gap-4 mb-6" data-aos="fade-up">
           <div class="w-max flex items-center gap-2">
-            <img src="<?php echo SYSTEM_URL."/public/images/".$order_summary->gender.".svg" ?>" alt="profile" class="w-9 h-9">
+            <img src="<?= SYSTEM_URL."/uploads/profile/".$profile_pic?>" alt="profile" class="w-9 h-9 object-cover rounded-full">
             <div>
               <p class="text-sm text-black font-semibold"><?php echo $order_summary->fullname ?></p>
               <p class="text-sm text-slate-500 font-semibold"><?php echo $order_summary->role_name ?></p>

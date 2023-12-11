@@ -52,13 +52,14 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
                 $database->DBQuery("SELECT * FROM `users` LEFT JOIN `role` ON users.role_id=role.role_id WHERE users.built_in = 'no' ORDER BY users.user_no DESC");
                 $accounts = $database->fetchAll();   
                 foreach($accounts as $account):
+                  $profile_pic = isset($account->profile) ? $account->profile : $account->gender.'.svg';
             ?>
               <tr class="bg-white">
                 <td class="text-sm py-4 px-4 hidden" hidden><?= $account->active ?></td>
                 <td class="text-sm py-4 px-4"><?= $number++ ?></td>
                 <td class="text-sm py-4 px-4">
                   <div class="flex items-center gap-2">
-                    <img src="<?= SYSTEM_URL."/public/images/".$account->gender.".svg" ?>" alt="profile" class="w-9 h-9">
+                    <img src="<?= SYSTEM_URL."/uploads/profile/".$profile_pic?>" alt="profile" class="w-9 h-9 object-cover rounded-full">
                     <div>
                       <p class="text-sm text-black font-semibold"><?= $account->fullname ?></p>
                       <p class="text-xs text-slate-500"><?= $account->role_name ?></p>

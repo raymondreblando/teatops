@@ -62,6 +62,8 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
               $database->DBQuery("SELECT * FROM `orders` LEFT JOIN `payments` ON orders.order_id=payments.order_id LEFT JOIN `users` ON orders.user_id=users.user_id LEFT JOIN `role` ON users.role_id=role.role_id ORDER BY orders.order_no DESC");
               $orders = $database->fetchAll();   
               foreach($orders as $order):
+                $profile_pic = isset($order->profile) ? $order->profile : $order->gender.'.svg';
+                $is_disabled = $order->order_status == 'Cancelled' ? 'disabled' : '';
             ?>
                 <tr class="bg-white">
                   <td class="text-sm py-4 px-4 hidden" hidden><?= $order->order_status ?></td>
@@ -70,7 +72,7 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
                   <td class="text-sm py-4 px-4"><?= $functions->formatDateTime($order->order_date, "M d, Y - h:s A") ?></td>
                   <td class="text-sm py-4 px-4">
                     <div class="w-max flex items-center gap-2">
-                      <img src="<?= SYSTEM_URL."/public/images/".$order->gender.".svg" ?>" alt="profile" class="w-9 h-9">
+                      <img src="<?= SYSTEM_URL."/uploads/profile/".$profile_pic?>" alt="profile" class="w-9 h-9 object-cover rounded-full">
                       <div>
                         <p class="text-sm text-black font-semibold"><?= $order->fullname ?></p>
                         <p class="text-xs text-slate-500"><?= $order->role_name ?></p>
@@ -86,7 +88,7 @@ $redirect->redirectNotAdmin(SYSTEM_URL);
                         <img src="<?= SYSTEM_URL ?>/public/icons/bag-2-linear.svg" alt="bag" class="w-4 h-4">
                       </a>
                       <div class="relative w-36 h-10 border border-gray-300/400 rounded-md px-4">
-                        <select data-id="<?= $order->order_id ?>" class="changeStatus w-full h-10 outline-none text-black text-sm appearance-none">
+                        <select data-id="<?= $order->order_id ?>" class="changeStatus w-full h-10 outline-none text-black text-sm appearance-none disabled:cursor-not-allowed" <?= $is_disabled ?>>
                           <?php 
                               $selected = $order->order_status;
                               $options = array("Pending","Confirmed","Delivering","Completed","Cancelled");
